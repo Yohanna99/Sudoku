@@ -37,17 +37,23 @@ def is_valid?(board, row, col, char)
     end
 end
 
-# this board will be deleted once we get
-# file input ready
-board = 
-   ["53..7....",
-    "6..195...",
-    ".98....6.",
-    "8...6...3",
-    "4..8.3..1",
-    "7...2...6",
-    ".6....28.",
-    "...419..5",
-    "....8..79"]
+board = File.readlines("Sudoku/sudoku.txt") #reads lines of file into array
+
+#for Yohanna, you can do user validation here, board[0] would give you first line for example
+#and board[0][0] would give you first character in first line
 
 solve_sudoku(board)
+
+
+# this board will be deleted once we get
+# file input ready
+#board = 
+#   ["53..7....",
+#    "6..195...",
+#    ".98....6.",
+#    "8...6...3",
+#    "4..8.3..1",
+#    "7...2...6",
+#    ".6....28.",
+#    "...419..5",
+#    "....8..79"]
