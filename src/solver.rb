@@ -14,7 +14,7 @@ end
 
 
 def solve_sudoku(board)
-    puts "Original board: \n"
+    puts "Original Board: \n"
     puts print_board(board)
     return if board.nil? || board.empty?
     if solve(board)
