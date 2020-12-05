@@ -55,8 +55,12 @@ def is_valid?(board, row, col, char)
     end
 end
 
-board = File.readlines("Sudoku/sudoku.txt") #reads lines of file into array
-
+begin
+    board = File.readlines("sudoku.txt") #reads lines of file into array
+rescue
+    puts "File not found!"
+    exit 
+end
 #for Yohanna, you can do user validation here, board[0] would give you first line for example
 #and board[0][0] would give you first character in first line
 
