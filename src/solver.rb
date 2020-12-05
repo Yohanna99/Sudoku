@@ -1,7 +1,25 @@
+def print_board(board)
+  border = "+-----+-----+-----+"
+  9.times do |i|
+    puts border if i%3 == 0
+    9.times do |j|
+      print j%3==0 ? "|": " "
+      print board[i][j]
+    end
+    puts "|"
+  end
+  puts border
+end
+
+
+
 def solve_sudoku(board)
+    puts "Original board: \n"
+    puts print_board(board)
     return if board.nil? || board.empty?
     if solve(board)
-        puts board
+        puts "Finished Board:"
+        puts print_board(board)
     else 
         puts "This board is unsolvable"
     end
