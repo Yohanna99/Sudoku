@@ -43,6 +43,9 @@ end
 
 def solve_sudoku(board)
     puts "Original Board: \n"
+    (0...board.length).each do |row|
+      board[row] = board[row].chomp #removes newline character at end of string
+    end
     puts print_board(board)
     return if board.nil? || board.empty?
     if initial_val(board)
@@ -89,20 +92,12 @@ def is_valid?(board, row, col, char)
 end
 
 begin
-   boardFromFile = File.readlines("sudoku.txt") #reads lines of file into array
+   board = File.readlines("sudoku.txt") #reads lines of file into array
 rescue
     puts "File not found!"
     exit 
 end
 
-
-board = Array.new(9) {Array.new(9)}
-#Get rid of blank space at end of each row
-(0...board.length).each do |row|
-    (0...board[row].length).each do |col|
-        board[row][col] = boardFromFile[row][col]
-    end
-end
 
 solve_sudoku(board)
 
