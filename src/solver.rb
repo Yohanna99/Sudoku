@@ -1,3 +1,31 @@
+
+def initial_val(board)
+  
+  (0...board.length).each do |row|
+    (0...board[row].length).each do |col|
+      next unless board[row][col] != "."
+      char = board[row][col]
+
+      (0...9).each do |m|
+
+        if m != col && board[row][m] != "."
+
+          return false if board[row][m] == char # check row
+        end
+        if m != row && board[m][col] != "."
+
+          return false if board[m][col] == char # check col
+
+        end
+        if row != (3 * (row / 3) + m / 3) && col != (3 * (col / 3) + m % 3)  &&  board[3 * (row / 3) + m / 3][3 * (col / 3) + m % 3] != "."
+          return false if board[3 * (row / 3) + m / 3][3 * (col / 3) + m % 3] == char # check 3 * 3 block
+        end
+      end
+    end   
+  end
+end
+
+
 def print_board(board)
   border = "+-----+-----+-----+"
   9.times do |i|
@@ -17,12 +45,17 @@ def solve_sudoku(board)
     puts "Original Board: \n"
     puts print_board(board)
     return if board.nil? || board.empty?
-    if solve(board)
+    if initial_val(board)
+      if solve(board)
         puts "Finished Board:"
         puts print_board(board)
-    else 
+      else 
         puts "This board is unsolvable"
+      end
+    else
+      puts "This board is invalid"
     end
+      
 end
   
 def solve(board)
@@ -64,18 +97,23 @@ end
 #for Yohanna, you can do user validation here, board[0] would give you first line for example
 #and board[0][0] would give you first character in first line
 
+
+
+
 solve_sudoku(board)
 
 
 # this board will be deleted once we get
 # file input ready
-#board = 
-#   ["53..7....",
-#    "6..195...",
-#    ".98....6.",
-#    "8...6...3",
-#    "4..8.3..1",
-#    "7...2...6",
-#    ".6....28.",
-#    "...419..5",
-#    "....8..79"]
+=begin
+board = 
+   ["53..7....",
+    "6..195...",
+    ".98....6.",
+    "8...6...3",
+    "4..8.3..1",
+    "7...2...6",
+    ".6....28.",
+    "...419..5",
+    "....8..79"]
+=end
