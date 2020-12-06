@@ -89,16 +89,20 @@ def is_valid?(board, row, col, char)
 end
 
 begin
-    board = File.readlines("sudoku.txt") #reads lines of file into array
+   boardFromFile = File.readlines("sudoku.txt") #reads lines of file into array
 rescue
     puts "File not found!"
     exit 
 end
-#for Yohanna, you can do user validation here, board[0] would give you first line for example
-#and board[0][0] would give you first character in first line
 
 
-
+board = Array.new(9) {Array.new(9)}
+#Get rid of blank space at end of each row
+(0...board.length).each do |row|
+    (0...board[row].length).each do |col|
+        board[row][col] = boardFromFile[row][col]
+    end
+end
 
 solve_sudoku(board)
 
