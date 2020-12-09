@@ -1,4 +1,3 @@
-
 def initial_val(board)
   
   (0...board.length).each do |row|
@@ -91,28 +90,30 @@ def is_valid?(board, row, col, char)
     end
 end
 
-begin
-   board = File.readlines("sudoku.txt") #reads lines of file into array
-rescue
+
+puts "Do you want to play sudoku?: [y/n]"
+r = $stdin.gets.chomp
+while true
+if r == "y"
+    puts "Enter your sudoku board file:"
+    b = $stdin.gets.chomp
+  begin
+   board = File.readlines(b) #reads lines of file into array
+  rescue
     puts "File not found!"
     exit 
+  end
+    solve_sudoku(board)
+    puts "Want to play again? [y/n]"
+    replay = $stdin.gets.chomp
+    if replay == "n"
+      puts "Thanks for playing!"
+      break
+    end
 end
-
-
-solve_sudoku(board)
-
-
-# this board will be deleted once we get
-# file input ready
-=begin
-board = 
-   ["53..7....",
-    "6..195...",
-    ".98....6.",
-    "8...6...3",
-    "4..8.3..1",
-    "7...2...6",
-    ".6....28.",
-    "...419..5",
-    "....8..79"]
-=end
+if r == "n"
+  puts "OK, maybe next time"
+  break
+end
+end
+exit
